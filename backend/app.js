@@ -1,6 +1,18 @@
 const express = require("express");
 
 const app = express();
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://kerelosmikhail:0M9bR06hdY0Go6NG@cluster0.kza7m8q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  )
+  .then(() => {
+    console.log("Successfully connected to MongoDB Atlas");
+  })
+  .catch((error) => {
+    console.log("Unable to connect");
+  });
 
 app.use(express.json());
 
@@ -48,6 +60,8 @@ app.post("/api/stuff", (req, res, next) => {
   });
 });
 
+module.exports = app;
+
 // app.use((erq, res, next) => {
 //   console.log("Request received!");
 //   next();
@@ -67,4 +81,7 @@ app.post("/api/stuff", (req, res, next) => {
 //   next();
 // });
 
-module.exports = app;
+// // Sample route
+// app.get("/", (req, res) => {
+//   res.send("Hello, World!");
+// });
